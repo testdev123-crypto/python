@@ -33,6 +33,7 @@ jobs:
       - name: Run SonarQube analysis
         run: |
          pysonar-scanner \
+         -Dsonar.projectKey=Test1 \
          -Dsonar.sources=. \
          -Dsonar.host.url=http://13.126.193.120:9000/ \
          -Dsonar.login=sqa_be7f5853b2ee73a56e10e61ff99021f0451da1ec 
