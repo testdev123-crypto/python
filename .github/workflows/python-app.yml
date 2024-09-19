@@ -27,5 +27,11 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+      - name: Install sonar scanner
+        run: pip install pysonar-scanner
+
+      - name: Run SonarQube analysis
+        run: pysonar-scanner -Dsonar.token=squ_75103e00bdd50172378e56044918a082b018b803 
+
       
 
