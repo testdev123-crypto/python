@@ -27,6 +27,21 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+      - name: Install Dependency-Check
+        run: |
+          wget https://github.com/jeremylong/DependencyCheck/releases/download/v8.1.2/dependency-check-8.1.2-release.zip
+          unzip dependency-check-8.1.2-release.zip
+          sudo mv dependency-check /usr/local/bin/
+
+      - name: Run Dependency-Check
+        run: |
+          dependency-check/bin/dependency-check.sh \
+            --project "Test1" \
+            --scan . \
+            --format HTML \
+            --out dependency-check-report.html
+
+
       - name: Install sonar scanner
         run: pip install pysonar-scanner
 
@@ -37,6 +52,10 @@ jobs:
          -Dsonar.sources=. \
          -Dsonar.host.url=http://13.126.193.120:9000/ \
          -Dsonar.login=sqa_be7f5853b2ee73a56e10e61ff99021f0451da1ec 
+         -Dsonar.javascript.node.maxspace=8192 \
+         -Dsonar.dependencyCheck.summarize=true \
+         -Dsonar.dependencyCheck.htmlReportPath=dependency-check-report.html \
+         -Dsonar.exclusions=**/*.py
 
       
 
