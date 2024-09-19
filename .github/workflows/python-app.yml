@@ -35,7 +35,7 @@ jobs:
 
       - name: Run Dependency-Check
         run: |
-          dependency-check/bin/dependency-check.sh \
+          /usr/local/bin/dependency-check/bin/dependency-check.sh \
             --project "Test1" \
             --scan . \
             --format HTML \
