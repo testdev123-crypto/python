@@ -1,0 +1,61 @@
+
+name: Python SonarQube Scan1
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your default branch
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sonarQube:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10.12'  # Use the Python version you need
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Install Dependency-Check
+        run: |
+          wget https://github.com/jeremylong/DependencyCheck/releases/download/v10.0.4/dependency-check-10.0.4-release.zip
+          unzip dependency-check-10.0.4-release.zip
+          sudo mv dependency-check /usr/local/bin/
+
+      - name: Run Dependency-Check
+        run: |
+          /usr/local/bin/dependency-check/bin/dependency-check.sh \
+            --project "Test1" \
+            --scan . \
+            --format HTML \
+            --out dependency-check-report.html
+
+
+      - name: Install sonar scanner
+        run: pip install pysonar-scanner
+
+      - name: Run SonarQube analysis
+        run: |
+         pysonar-scanner \
+         -Dsonar.projectKey=python \
+         -Dsonar.projectName='python' \
+         -Dsonar.sources=. \
+         -Dsonar.host.url=https://1a0d-59-145-123-10.ngrok-free.app \
+         -Dsonar.token=sqp_0be548ba099f0ba6fbd1b1a6ddd436dd5367465b \
+         -Dsonar.javascript.node.maxspace=8192 \
+         -Dsonar.dependencyCheck.summarize=true \
+         -Dsonar.dependencyCheck.htmlReportPath=dependency-check-report.html 
+
+      
