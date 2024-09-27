@@ -52,7 +52,7 @@ jobs:
          -Dsonar.projectKey=python \
          -Dsonar.projectName='python' \
          -Dsonar.sources=. \
-         -Dsonar.host.url=https://1a0d-59-145-123-10.ngrok-free.app \
+         -Dsonar.host.url=https://29ed-59-145-123-10.ngrok-free.app \
          -Dsonar.token=sqp_0be548ba099f0ba6fbd1b1a6ddd436dd5367465b \
          -Dsonar.javascript.node.maxspace=8192 \
          -Dsonar.dependencyCheck.summarize=true \
