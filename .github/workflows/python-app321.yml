@@ -1,4 +1,4 @@
-name: Python SonarQube Scan
+name: Python SonarQube Scan321
 
 'on':
   push:
@@ -57,10 +57,9 @@ jobs:
         run: |
           pysonar-scanner \
           -Dsonar.projectKey=python \
-          -Dsonar.projectName='python' \
           -Dsonar.sources=. \
-          -Dsonar.host.url=https://29ed-59-145-123-10.ngrok-free.app \
-          -Dsonar.token=sqp_0be548ba099f0ba6fbd1b1a6ddd436dd5367465b \
+          -Dsonar.host.url=https://f296-59-145-123-10.ngrok-free.app \
+          -Dsonar.token=sqp_b816eb40a95284ef0d65600071dcb50b3af6bc51 \
           -Dsonar.javascript.node.maxspace=8192 \
           -Dsonar.dependencyCheck.summarize=true \
           -Dsonar.dependencyCheck.htmlReportPath=dependency-check-report.html \
