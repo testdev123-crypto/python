@@ -40,11 +40,10 @@ jobs:
       - name: Cache Dependency-Check data
         uses: actions/cache@v3
         with:
-          path: /usr/local/bin/dependency-check/data
-          key: dependency-check-${{ runner.os }}
+          path: ~/.cache/owasp/dependency-check/data
+          key: ${{ runner.os }}-dependency-check-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
-            dependency-check-${{ runner.os }}-
-            dependency-check-
+            ${{ runner.os }}-dependency-check-
 
       - name: Install Dependency-Check if not cached
         run: |
