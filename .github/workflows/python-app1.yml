@@ -48,8 +48,8 @@ jobs:
       - name: Install Dependency-Check if not cached
         run: |
           if [ ! -d "/usr/local/bin/dependency-check" ]; then
-            wget https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check-latest-release.zip
-            unzip dependency-check-latest-release.zip
+            wget https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check-10.0.3-release.zip
+            unzip dependency-check-10.0.3-release.zip
             sudo mv dependency-check /usr/local/bin/
           fi
 
