@@ -42,7 +42,7 @@ jobs:
         with:
           path: /usr/local/bin/dependency-check/data
           key: dependency-check-${{ runner.os }}-v10.0.4
-          restore-keys: dependency-check-${{ runner.os }}
+          restore-keys: dependency-check-${{ runner.os }}-
 
       - name: Install Dependency-Check if not cached
         run: |
