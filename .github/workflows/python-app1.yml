@@ -49,7 +49,7 @@ jobs:
         run: |
           if [ ! -d "/usr/local/bin/dependency-check" ]; then
             wget https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check-latest-release.zip
-            unzip dependency-check-10.0.4-release.zip
+            unzip dependency-check-latest-release.zip
             sudo mv dependency-check /usr/local/bin/
           fi
 
