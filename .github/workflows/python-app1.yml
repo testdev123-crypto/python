@@ -45,16 +45,22 @@ jobs:
 
       - name: Install sonar scanner
         run: pip install pysonar-scanner
-
+        
+      - name: Cache OWASP Dependency-Check data
+        uses: actions/cache@v3
+        with:
+          path: /usr/local/bin/dependency-check/data
+          key: ${{ runner.os }}-dependency-check-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-dependency-check-
+            
       - name: Run SonarQube analysis
         run: |
          pysonar-scanner \
          -Dsonar.projectKey=python \
-         -Dsonar.projectName='python' \
          -Dsonar.sources=. \
-         -Dsonar.host.url=https://f296-59-145-123-10.ngrok-free.app \
+         -Dsonar.host.url=https://9d81-59-145-123-10.ngrok-free.app \
          -Dsonar.token=sqp_b816eb40a95284ef0d65600071dcb50b3af6bc51 \
-         -Dsonar.javascript.node.maxspace=8192 \
          -Dsonar.dependencyCheck.summarize=true \
          -Dsonar.dependencyCheck.htmlReportPath=dependency-check-report.html 
 
