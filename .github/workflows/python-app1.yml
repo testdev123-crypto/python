@@ -37,10 +37,10 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       # Cache for Dependency-Check
-      - name: Cache Dependency-Check
+      - name: Cache Dependency-Check data
         uses: actions/cache@v3
         with:
-          path: dependency-check
+          path: /usr/local/bin/dependency-check/data
           key: dependency-check-${{ runner.os }}-v10.0.4
           restore-keys: dependency-check-${{ runner.os }}
 
