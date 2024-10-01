@@ -41,13 +41,15 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /usr/local/bin/dependency-check/data
-          key: dependency-check-${{ runner.os }}-v10.0.4
-          restore-keys: dependency-check-${{ runner.os }}-
+          key: dependency-check-${{ runner.os }}
+          restore-keys: |
+            dependency-check-${{ runner.os }}-
+            dependency-check-
 
       - name: Install Dependency-Check if not cached
         run: |
-          if [ ! -d "dependency-check" ]; then
-            wget https://github.com/jeremylong/DependencyCheck/releases/download/v10.0.4/dependency-check-10.0.4-release.zip
+          if [ ! -d "/usr/local/bin/dependency-check" ]; then
+            wget https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check-latest-release.zip
             unzip dependency-check-10.0.4-release.zip
             sudo mv dependency-check /usr/local/bin/
           fi
